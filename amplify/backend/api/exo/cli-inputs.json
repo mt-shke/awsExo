@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "exo",
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "AWS_IAM"
+    }
+  }
+}

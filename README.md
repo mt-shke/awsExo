@@ -1,38 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 style='padding:1rem;font-weight:bold' align='center'>Aws Course - Quote Project</h1>
 
-## Getting Started
+## **AWS**
 
-First, run the development server:
+<details>
+<summary>Styled components</summary>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+```js
+// add .babelrc
+// add next.config.js
+
+// npm install styled-components@latest
+// npm install --save-dev babel-plugin-styled-components
+// npm install --save @types/styled-components
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+.babelrc
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```js
+{
+   "presets": ["next/babel"],
+   "plugins": [["styled-components", { "ssr": true, "displayName": true }]]
+}
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+</details>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+<details>
+<summary>AWS</summary>
 
-## Learn More
+```js
+// amplify config
+// amplify init
 
-To learn more about Next.js, take a look at the following resources:
+// https://docs.amplify.aws/start/getting-started/setup/q/integration/next/#initialize-a-new-backend
+// npm install aws-amplify @aws-amplify/ui-react
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```js
+// _app.js
+// AWS imports
+import { Amplify } from "aws-amplify";
+import awsExports from "../src/aws-exports";
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Amplify.configure({ ...awsExports, ssr: true });
+```
 
-## Deploy on Vercel
+```js
+// amplify add api
+// amplify add auth
+// amplify status
+// amplify add function
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+// amplify push
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+// Add Table to db
+// console > app > appDataTable > create Item
+```
+
+</details>
