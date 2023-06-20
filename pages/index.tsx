@@ -10,6 +10,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { somethingQueryName } from "../src/graphql/queries";
 import { GraphQLResult } from "@aws-amplify/api-graphql";
+import QuoteGenModal from "@/components/QuoteGenerator/QuoteGenModal";
 
 interface UpdateInfoData {
    id: string;
@@ -33,6 +34,11 @@ const isGraphQLResultForSomethingQueryName = (
 
 export default function Home() {
    const [numberOfThings, setNumberOfThings] = useState<number | null>(0);
+   const [openGen, setOpenGen] = useState<boolean>(false);
+   const [processingQuote, setProcessingQuote] = useState(false);
+   const [quoteReceived, setQuoteReceived] = useState<string | null>(
+      "Something"
+   );
 
    const updateInfoData = async () => {
       try {
@@ -67,6 +73,23 @@ export default function Home() {
       updateInfoData();
    }, []);
 
+   const handleCloseGen = () => {
+      setOpenGen(false);
+   };
+
+   const handleOpenGen = async (e: React.SyntheticEvent) => {
+      e.preventDefault();
+      setOpenGen(true);
+      setProcessingQuote(true);
+      try {
+         setTimeout(() => {
+            setProcessingQuote(false);
+         }, 2500);
+      } catch (error) {
+         console.log("Error generating: ", error);
+      }
+   };
+
    return (
       <>
          <Head>
@@ -81,6 +104,18 @@ export default function Home() {
          {/* Background  */}
          <GradientBackgroundCon>
             <QuotesGenerator />
+
+            <QuoteGenModal
+               open={openGen}
+               close={handleCloseGen}
+               processingQuote={processingQuote}
+               setProcessingQuote={setProcessingQuote}
+               quoteReceived={quoteReceived}
+               setQuoteReceived={setQuoteReceived}
+            />
+
+            <button onClick={(e) => handleOpenGen(e)}>Generator Click</button>
+
             <FooterCon>
                <>Quotes generated : {numberOfThings}</>
                <br />
