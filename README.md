@@ -48,14 +48,17 @@ Amplify.configure({ ...awsExports, ssr: true });
 
 ```js
 // amplify add api
+
 // amplify add auth
+// amplify update auth
+
 // amplify status
 // amplify add function
 
 // amplify push
 
 // Add Table to db
-// console > app > appDataTable > create Item
+// console > app > appDataTable View > create Item
 ```
 
 </details>
