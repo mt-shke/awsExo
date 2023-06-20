@@ -1,5 +1,5 @@
 import { Fade, Modal, Backdrop } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
    ModalCircularProgress,
    QuoteGeneratorCon,
@@ -8,6 +8,8 @@ import {
    QuoteGeneratorTitle,
 } from "./QuoteGeneratorElements";
 import { ImageBlobCon } from "../animations/AnimationElements";
+import ImageBlob from "../animations/ImageBlob";
+import AnimatedDownloadButton from "../animations/AnimatedDownloadButton";
 
 interface QuoteGenModalProps {
    open: boolean;
@@ -28,8 +30,35 @@ const QuoteGenModal: React.FC<QuoteGenModalProps> = ({
    quoteReceived,
    setQuoteReceived,
 }: QuoteGenModalProps) => {
+   const [blobUrl, setBlobUrl] = useState<string | null>(null);
+
    const wiseDevThing = "Wise dev statement";
    const wiseDevThingAuthor = "JJRRR";
+
+   useEffect(() => {
+      if (quoteReceived) {
+         const binaryData = Buffer.from(quoteReceived, "base64");
+         const blob = new Blob([binaryData], { type: "image/png" });
+         const blobUrlGenerated = URL.createObjectURL(blob);
+         console.log(blobUrlGenerated);
+         setBlobUrl(blobUrlGenerated);
+
+         return () => {
+            URL.revokeObjectURL(blobUrlGenerated);
+         };
+      }
+   }, [quoteReceived]);
+
+   const handleDownload = () => {
+      const link = document.createElement("a");
+
+      if (typeof blobUrl === "string") {
+         link.href = blobUrl;
+         link.download = "quote.png";
+         link.click();
+      }
+   };
+
    return (
       <Modal
          id="QuoteGeneratorModal"
@@ -70,9 +99,19 @@ const QuoteGenModal: React.FC<QuoteGenModalProps> = ({
                            Generated something!
                         </QuoteGeneratorTitle>
 
-                        <QuoteGeneratorSubTitle style={{ marginTop: "20px" }}>
-                           <ImageBlobCon></ImageBlobCon>
-                        </QuoteGeneratorSubTitle>
+                        <QuoteGeneratorSubTitle
+                           style={{ marginTop: "20px" }}
+                        ></QuoteGeneratorSubTitle>
+                        <ImageBlobCon>
+                           <ImageBlob
+                              quoteReceived={quoteReceived}
+                              blobUrl={blobUrl}
+                           />
+                        </ImageBlobCon>
+
+                        <AnimatedDownloadButton
+                           handleDownload={() => handleDownload()}
+                        ></AnimatedDownloadButton>
                      </>
                   )}
                </QuoteGeneratorModalInnerCon>

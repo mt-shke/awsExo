@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { somethingQueryName } from "../src/graphql/queries";
 import { GraphQLResult } from "@aws-amplify/api-graphql";
 import QuoteGenModal from "@/components/QuoteGenerator/QuoteGenModal";
+import AnimatedDownloadButton from "@/components/animations/AnimatedDownloadButton";
 
 interface UpdateInfoData {
    id: string;
@@ -114,6 +115,9 @@ export default function Home() {
                setQuoteReceived={setQuoteReceived}
             />
 
+            <AnimatedDownloadButton
+               handleDownload={() => {}}
+            ></AnimatedDownloadButton>
             <button onClick={(e) => handleOpenGen(e)}>Generator Click</button>
 
             <FooterCon>
