@@ -29,6 +29,9 @@
 <details>
 <summary>AWS</summary>
 
+<details>
+<summary>Setup Table</summary>
+
 ```js
 // amplify config
 // amplify init
@@ -59,6 +62,37 @@ Amplify.configure({ ...awsExports, ssr: true });
 
 // Add Table to db
 // console > app > appDataTable View > create Item
+```
+
+</details>
+
+<details>
+<summary>Lambda function</summary>
+
+```js
+// amplify > backend > function/appLambda > src > index.js
+
+// amplify update function
+```
+
+</details>
+
+</details>
+
+<details>
+<summary>React lottie</summary>
+
+```js
+
+```
+
+</details>
+
+<details>
+<summary>Blob</summary>
+
+```js
+
 ```
 
 </details>

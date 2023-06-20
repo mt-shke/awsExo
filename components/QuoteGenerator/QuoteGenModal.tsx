@@ -67,13 +67,13 @@ const QuoteGenModal: React.FC<QuoteGenModalProps> = ({
          open={open}
          onClose={close}
          closeAfterTransition
-         BackdropComponent={Backdrop}
-         BackdropProps={{
-            timeout: 500,
-         }}
+         // BackdropComponent={Backdrop}
+         // BackdropProps={{
+         // timeout: 500,
+         // }}
       >
          <Fade in={open}>
-            <QuoteGeneratorCon sx={style}>
+            <QuoteGeneratorCon>
                <QuoteGeneratorModalInnerCon>
                   {/* Processing state  */}
 

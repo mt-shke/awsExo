@@ -37,9 +37,7 @@ export default function Home() {
    const [numberOfThings, setNumberOfThings] = useState<number | null>(0);
    const [openGen, setOpenGen] = useState<boolean>(false);
    const [processingQuote, setProcessingQuote] = useState(false);
-   const [quoteReceived, setQuoteReceived] = useState<string | null>(
-      "Something"
-   );
+   const [quoteReceived, setQuoteReceived] = useState<string | null>(null);
 
    const updateInfoData = async () => {
       try {
@@ -85,6 +83,7 @@ export default function Home() {
       try {
          setTimeout(() => {
             setProcessingQuote(false);
+            setQuoteReceived("Something");
          }, 2500);
       } catch (error) {
          console.log("Error generating: ", error);
@@ -115,9 +114,6 @@ export default function Home() {
                setQuoteReceived={setQuoteReceived}
             />
 
-            <AnimatedDownloadButton
-               handleDownload={() => {}}
-            ></AnimatedDownloadButton>
             <button onClick={(e) => handleOpenGen(e)}>Generator Click</button>
 
             <FooterCon>

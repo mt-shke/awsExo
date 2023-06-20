@@ -43,6 +43,7 @@
   "function": {
     "somethingLambda": {
       "build": true,
+      "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }

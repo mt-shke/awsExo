@@ -5,7 +5,6 @@
 # } # FOR TESTING ONLY!
 
 # Query
-# Lambda
 type Query {
    generateSomething(input: AWSJSON!): String
       @auth(rules: [{ allow: public, provider: iam }])
